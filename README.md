@@ -1,6 +1,7 @@
 # BookStore WebApi
 
 ## Endpoints
+```
 GET api/authors  --> shows lists of authors
 GET api/authors/{author}/books --> list of books per author
 GET api/authors/{author}/books/{book}/{key} --> book details for book {key}
@@ -10,6 +11,7 @@ POST api/authors/{author}/books --> creates a book for an author
 
 DELETE api/authors/{author} --> deletes an author
 DELETE api/authors/{author}/books/{key} --> delete a book for an author
+```
 
 ### Structure
 1. Domain > domain models for the project
