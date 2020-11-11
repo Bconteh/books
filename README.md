@@ -12,7 +12,7 @@ DELETE api/authors/{author} --> deletes an author
 DELETE api/authors/{author}/books/{key} --> delete a book for an author
 
 ### Structure
-Domain > domain models for the project
-Repositories > only works with the domain models only
-Application Services > handling of the business logics. e.g creating authors, get authors - api controllers are invoking application services. App services works with Repositories
-DTO - services works with DTO only. Application services don't work with domain models directly. Services returns DTOs to users not the models.
+1. Domain > domain models for the project
+2. Repositories > only works with the domain models only
+3. Application Services > handling of the business logics. e.g creating authors, get authors - api controllers are invoking application services. App services works with Repositories
+4. DTO - services works with DTO only. Application services don't work with domain models directly. Services returns DTOs to users not the models.
