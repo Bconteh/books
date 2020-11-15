@@ -15,6 +15,14 @@ namespace Books.Core.Domain
         public IEnumerable<Book> Books { get => _books; protected set => _books = new HashSet<Book>(value); }
         public DateTime ActiveYear { get; protected set; }
 
+        public string AuthorFullName
+        {
+            get
+            {
+                return $"{Name}-{Surname}";
+            } 
+        }
+
         protected Author()
         {
 
@@ -31,10 +39,10 @@ namespace Books.Core.Domain
             ActiveYear = activeYear;
         }
 
-        public Book GetBookOrFail(string isbn)
+        public Book GetBookOrFail(string title)
         {
-            var fixedtitle = isbn.ToLowerInvariant();
-            var book = Books.SingleOrDefault(x => x.Title == fixedtitle);
+            var fixedtitle = title.ToLowerInvariant();
+            var book = Books.SingleOrDefault(x => x.Title.ToLowerInvariant() == fixedtitle);
             if(book == null)
             {
                 throw new Exception($"No result found for the book with Title : '{fixedtitle}'");
@@ -52,10 +60,10 @@ namespace Books.Core.Domain
             _books.Add(new Book(Id, title, publishYear, fixedIsbn, rating, category));
         }
 
-        public void RemoveBook(string isbn)
+        public void RemoveBook(string title)
         {
-            var fixedIsbn = isbn.ToLowerInvariant();
-            var book = GetBookOrFail(fixedIsbn);
+            var fixedTitle = title.ToLowerInvariant();
+            var book = GetBookOrFail(fixedTitle);
             _books.Remove(book);
         }
     }

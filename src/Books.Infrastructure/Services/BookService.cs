@@ -43,10 +43,10 @@ namespace Books.Infrastructure.Services
             return author.Books.Select(x => x.Title);
         }
 
-        public async Task RemoveBookAsync(string author, string title, string isbn) // should not work, as not implemented in imMemoryRepo
+        public async Task RemoveBookAsync(string author, string title) // should not work, as not implemented in imMemoryRepo
         {
             var foundAuthor = await _authorRepository.GetAuthorOrFailAsync(author);
-            foundAuthor.RemoveBook(isbn);
+            foundAuthor.RemoveBook(title);
             await _authorRepository.UpdateAuthorAsync(foundAuthor);
         }
     }

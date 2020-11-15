@@ -12,6 +12,6 @@ namespace Books.Infrastructure.Services
         Task<IEnumerable<string>> GetBooksOfAuthorAsync(string author);
         Task AddBookAsync(string author, string title, DateTime publishYear, string isbn, string rating, IList<string> category); //should take author object
         //Task UpdateBookAsync(string author, string title, string isbn);
-        Task RemoveBookAsync(string author, string title, string isbn);
+        Task RemoveBookAsync(string author, string title);
     }
 }

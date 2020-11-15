@@ -47,9 +47,9 @@ namespace Books.API.Controllers
         }
 
         [HttpDelete("{title}")]
-        public async Task<IActionResult> Delete(string author, string title, string isbn)
+        public async Task<IActionResult> Delete(string author, string title)
         {
-            await _bookService.RemoveBookAsync(author, title, isbn);
+            await _bookService.RemoveBookAsync(author, title);
 
             return NoContent();
         }
