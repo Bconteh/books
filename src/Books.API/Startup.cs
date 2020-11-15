@@ -38,6 +38,8 @@ namespace Books.API
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSwaggerGen();
+            
 
             //Book services
             //services.Configure<SqlSettings>(Configuration.GetSection("sql"));
@@ -68,6 +70,11 @@ namespace Books.API
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
             //app.UseCookiePolicy();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(config => {
+                config.SwaggerEndpoint("/swagger/v1/swagger.json", "Authors API");
+            });
 
             app.UseMvc();
         }
