@@ -23,21 +23,21 @@ namespace Books.Infrastructure.Services
         public async Task<AuthorDTO> GetAuthorAsync(string name)
         {
             var author = await _authorRepository.GetAuthorAsync(name);
-            return _mapper.Map<AuthorDTO>(author);
+            return _mapper.Map<AuthorDTO>(author); 
         }
 
         public async Task<IEnumerable<string>> GetAuthorsAsync()
         => await _authorRepository.GetAuthorsAsync();
         
 
-        public async Task AddAuthorAsync(string name, string surname, DateTime activeYear)
+        public async Task AddAuthorAsync(string name, string surname, IList<BookDTO> books, DateTime activeYear)
         {
-            var author = await _authorRepository.GetAuthorAsync(name);
+            var author = await _authorRepository.GetAuthorAsync(name); // should check for name and surname here
             if(author != null)
             {
                 throw new Exception($"author with name {name} already exist");
             }
-            author = new Author(Guid.NewGuid(), name, surname, activeYear);
+            author = new Author(Guid.NewGuid(), name, surname, books, activeYear);
             await _authorRepository.AddAuthorAsync(author);
         }
 

@@ -29,19 +29,19 @@ namespace Books.API.Controllers
         [HttpGet("{name}")]
         public async Task<IActionResult> Get(string name)
         {
-            var bucket = await _authorService.GetAuthorAsync(name);
-            if (bucket == null)
+            var author = await _authorService.GetAuthorAsync(name);
+            if (author == null)
             {
                 return NotFound();
             }
 
-            return Json(bucket);
+            return Json(author);
         }
 
-        [HttpPost("{name}")]
-        public async Task<IActionResult> Post([FromBody] AuthorDTO author) // DTO should move to infra
+        [HttpPost("")]
+        public async Task<IActionResult> Post([FromBody] AuthorDTO author) // DTO should move to infra and should handle book creation
         {
-            await _authorService.AddAuthorAsync(author.Name, author.Surname, author.ActiveYear);
+            await _authorService.AddAuthorAsync(author.Name, author.Surname, author.Books, author.ActiveYear);
 
             return Created($"api/authors/{author.Name}", null);
         }

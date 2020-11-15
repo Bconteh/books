@@ -14,7 +14,7 @@ namespace Books.Infrastructure.InMemory
 
         public async Task<Author> GetAuthorAsync(string name)
         {
-            var author = _authors.SingleOrDefault(x => x.Name  == name.ToLowerInvariant());
+            var author = _authors.SingleOrDefault(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
             return await Task.FromResult(author);
         }
 

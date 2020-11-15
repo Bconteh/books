@@ -15,10 +15,7 @@ namespace Books.Infrastructure.Mapper
             var config = new MapperConfiguration(c =>
             {
                 c.CreateMap<Author, AuthorDTO>()
-                    .ForMember(m => m.Books,
-                        m => m.MapFrom(p => p.Books
-                            .Select(i => i.Title)
-                            .OrderBy(i => i)));
+                    .ForMember(dest => dest.Books, m => m.MapFrom(src => src.Books.OrderBy(i => i.Title)));
 
                 c.CreateMap<Book, BookDTO>();
             });

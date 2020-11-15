@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Books.Core.Common;
+using Books.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,13 +20,14 @@ namespace Books.Core.Domain
 
         }
 
-        public Author(Guid id, string name, string surname, DateTime activeYear)
+        public Author(Guid id, string name, string surname, IList<BookDTO> books, DateTime activeYear)
         {
             // validate the values here
 
             Id = id;
             Name = name;
             Surname = surname;
+            books.Each(book =>_books.Add(new Book(Guid.NewGuid(), book.Title, book.PublishYear, book.ISBN, book.Rating, book.Category)));
             ActiveYear = activeYear;
         }
 

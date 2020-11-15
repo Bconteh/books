@@ -10,7 +10,7 @@ namespace Books.Infrastructure.Services
     {
         Task<AuthorDTO> GetAuthorAsync(string name);
         Task<IEnumerable<string>> GetAuthorsAsync();
-        Task AddAuthorAsync(string name, string surname, DateTime activeYear);
+        Task AddAuthorAsync(string name, string surname, IList<BookDTO> books, DateTime activeYear);
         //Task UpdateAuthorAsync(Author author);
         Task RemoveAuthorAsync(string name); //full name more accurate
     }
